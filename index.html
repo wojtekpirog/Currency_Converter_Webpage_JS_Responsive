@@ -14,7 +14,7 @@
     :root {
       --bg-light: #e3e3e3;
       --white: #fff;
-      --box-shadow: #282828;
+      --dark: #282828;
       --violet: #9771fe;
       --blue: #3051f1;
       --purple: #c92bb7;
@@ -27,7 +27,7 @@
       box-sizing: border-box;
     }
     body {
-      background-color: var(--box-shadow);
+      background-color: var(--dark);
       font-family: "Poppins", sans-serif;
       margin: 20px;
     }
@@ -46,16 +46,10 @@
       letter-spacing: 1px;
       margin-left: 5px;
     }
-    .converter-container {
-      background-color: var(--white);
-      border: 2px solid var(--violet);
-      border-radius: 10px;
-      padding: 20px;
-    }
     .navbar-toggler {
       width: 50px;
       height: 50px;
-      background-color: var(--box-shadow);
+      background-color: var(--dark);
       outline: none;
       border: none;
     }
@@ -112,13 +106,10 @@
       display: flex;
       justify-content: space-evenly;
       margin: 20px 0;
-      /* padding: 30px 0; */
       border-top: 2px solid var(--white);
       border-bottom: 2px solid var(--white);
-      /* border-radius: 10px; */
     }
     .social-media > a {
-      /* height: 40px; */
       width: 25%;
       display: flex;
       justify-content: center;
@@ -129,6 +120,16 @@
       color: var(--violet);
       text-align: right;
       font-size: 14px;
+    }
+    .converter-wrapper {
+      width: 400px;
+      background-color: var(--white);
+      border: 2px solid var(--violet);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .row {
+      text-align: center;
     }
     /** MEDIA QUERIES **/
     @media screen and (min-width: 600px) {
@@ -213,6 +214,24 @@
   </header>
   <main>
     <h1>Quickly <span class="exchange">exchange</span> your money here:</h1>
+    <section>
+      <div class="converter-wrapper">
+        <div class="row">
+          <img src="./assets/images/cash-coin.svg" alt="cash and coin">
+          <h2 style="color: var(--dark)">Currency Converter</h2>
+        </div>
+        <label for="amount">Amount:</label><br>
+        <input type="number" id="amount" value="100">
+        <div class="row">
+          <select id="from-currency"></select>
+          <select id="target-currency"></select>
+        </div>
+        <div class="row">
+          <button id="convert-btn">Convert</button>
+          <p id="result">result:</p>
+        </div>
+      </div>
+    </section>
     <section>
       <h2>You can find the developer at:</h2>
       <div class="social-media">
