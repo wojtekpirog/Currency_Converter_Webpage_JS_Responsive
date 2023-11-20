@@ -21,14 +21,9 @@
       box-sizing: border-box;
     }
     body {
-      height: 100vh;
       background-color: var(--box-shadow);
       font-family: "Poppins", sans-serif;
       margin: 20px;
-      /* padding: 40px;         */
-      /* display: flex;
-      justify-content: center;
-      align-items: center;       */
     }
     .flex {
       display: flex;
@@ -45,13 +40,12 @@
       letter-spacing: 1px;
       margin-left: 5px;
     }
-    /* .converter-container {
+    .converter-container {
       background-color: var(--white);
       border: 2px solid var(--violet);
       border-radius: 10px;
       padding: 20px;
-      box-shadow: 5px 5px 10px var(--box-shadow);
-    } */
+    }
     .navbar-toggler {
       width: 50px;
       height: 50px;
@@ -74,9 +68,45 @@
       color: var(--white);
       text-decoration: none;
       padding: 10px 20px;
+      transition: all .2s linear;
     }
     .navbar-links > li:last-child > a {
       padding-right: 0;
+    }
+    h1 {
+      margin: 40px 0;
+      font-size: 46px;
+      color: var(--white);
+    }
+    h2 {
+      font-size: 16px;
+      text-align: center;
+      color: var(--white);
+    }
+    .exchange {
+      color: var(--violet);
+    }
+    .social-media {
+      display: flex;
+      justify-content: space-evenly;
+      margin: 20px 0;
+      /* padding: 30px 0; */
+      border-top: 2px solid var(--white);
+      border-bottom: 2px solid var(--white);
+      /* border-radius: 10px; */
+    }
+    .social-media > a {
+      /* height: 40px; */
+      width: 25%;
+      display: flex;
+      justify-content: center;
+      padding: 30px 0;
+      transition: all .2s linear;
+    }
+    footer {
+      color: var(--violet);
+      text-align: right;
+      font-size: 14px;
     }
     /** MEDIA QUERIES **/
     @media screen and (min-width: 600px) {
@@ -85,6 +115,13 @@
       }
       .page-logo > span {
         font-size: 40px;
+      }
+      h1 {
+        margin: 60px 0;
+        font-size: 64px;
+      }
+      h2 {
+        font-size: 24px;
       }
     }
     @media screen and (min-width: 992px) {
@@ -102,6 +139,24 @@
       }
       .navbar-links {
         display: flex;
+      }
+      h2 {
+        font-size: 32px;
+      }
+      .navbar-links > li > a:hover {
+        color: var(--violet);
+      }
+      .facebook-link:hover {
+        background-color: #17a9fd;
+      }
+      .instagram-link:hover {
+        background-color: #fcaf45;
+      }
+      .linkedin-link:hover {
+        background-color: #0a66c2;
+      }
+      .github-link:hover {
+        background-color: #000;
       }
     }
   </style>
@@ -125,6 +180,29 @@
       </ul>
     </div>
   </header>
+  <main>
+    <h1>Quickly <span class="exchange">exchange</span> your money here:</h1>
+    <section>
+      <h2>You can find the developer at:</h2>
+      <div class="social-media">
+        <a href="#" target="_blank" draggable="true" class="facebook-link">
+          <img src="./assets/images/facebook.svg" alt="facebook">
+        </a>
+        <a href="#" target="_blank" draggable="true" class="instagram-link">
+          <img src="./assets/images/instagram.svg" alt="instagram">
+        </a>
+        <a href="#" target="_blank" draggable="true" class="linkedin-link">
+          <img src="./assets/images/linkedin.svg" alt="linkedin">
+        </a>
+        <a href="#" target="_blank" draggable="true" class="github-link">
+          <img src="./assets/images/github.svg" alt="github">
+        </a>        
+      </div>
+    </section>
+  </main>
+  <footer>
+    &copy;exchange.me 2023
+  </footer>
   <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script> -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script> -->
 </body>
