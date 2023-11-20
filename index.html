@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Wojciech Piróg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
+  <title>Simple Currency Converter</title>
+  <style>
+    :root {
+      --bg-light: #e3e3e3;
+      --white: #fff;
+      --box-shadow: #282828;
+      --violet: #9771fe;       
+    }
+    *, *:before, *:after {
+      box-sizing: border-box;
+    }
+    body {
+      height: 100vh;
+      background-color: var(--box-shadow);
+      font-family: "Poppins", sans-serif;
+      margin: 20px;
+      /* padding: 40px;         */
+      /* display: flex;
+      justify-content: center;
+      align-items: center;       */
+    }
+    .flex {
+      display: flex;
+    }
+    .page-header {
+      justify-content: space-between;
+      align-items: center;
+    }
+    .page-logo > span {
+      color: var(--violet);
+      font-size: 30px;
+      font-weight: bold;
+      font-style: italic;
+      letter-spacing: 1px;
+      margin-left: 5px;
+    }
+    /* .converter-container {
+      background-color: var(--white);
+      border: 2px solid var(--violet);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 5px 5px 10px var(--box-shadow);
+    } */
+    .navbar-toggler {
+      width: 50px;
+      height: 50px;
+      background-color: var(--box-shadow);
+      outline: none;
+      border: none;
+    }
+    .navbar-toggler > div {
+      height: 6px;
+      background-color: var(--bg-light);
+      margin: 8px 0;
+      border-radius: 10px;
+    }
+    .navbar-links {
+      display: none;
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .navbar-links > li > a {
+      color: var(--white);
+      text-decoration: none;
+      padding: 10px 20px;
+    }
+    .navbar-links > li:last-child > a {
+      padding-right: 0;
+    }
+    /** MEDIA QUERIES **/
+    @media screen and (min-width: 600px) {
+      .page-logo > img {
+        width: 40px;
+      }
+      .page-logo > span {
+        font-size: 40px;
+      }
+    }
+    @media screen and (min-width: 992px) {
+      body {
+        margin: 40px;
+      }
+      .page-logo > img {
+        width: 50px;
+      }
+      .page-logo > span {
+        font-size: 50px;
+      }
+      .navbar-toggler {
+        display: none;
+      }
+      .navbar-links {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="page-header flex">
+      <div class="page-logo flex">
+        <img src="./assets/images/coin.svg" alt="page logo icon">
+        <span>exchange.me</span>
+      </div>
+      <button class="navbar-toggler">
+        <div></div>
+        <div></div>
+        <div></div>
+      </button>
+      <ul class="navbar-links flex">
+        <li><a href="#" draggable="true">About Me</a></li>
+        <li><a href="#" draggable="true">Features</a></li>
+        <li><a href="#" draggable="true">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script> -->
+</body>
+</html>
