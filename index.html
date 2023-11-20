@@ -15,7 +15,13 @@
       --bg-light: #e3e3e3;
       --white: #fff;
       --box-shadow: #282828;
-      --violet: #9771fe;       
+      --violet: #9771fe;
+      --blue: #3051f1;
+      --purple: #c92bb7;
+      --red: #f73344;
+      --orange: #fa8e37;
+      --yellow-light: #fcdf8f;
+      --yellow: #fbd377;       
     }
     *, *:before, *:after {
       box-sizing: border-box;
@@ -65,10 +71,26 @@
       padding-left: 0;
     }
     .navbar-links > li > a {
+      display: inline-block;
+      position: relative;
+      padding: 10px 20px;            
       color: var(--white);
       text-decoration: none;
-      padding: 10px 20px;
       transition: all .2s linear;
+    }
+    .navbar-links > li > a::after {
+      content: '';
+      background-color: var(--violet);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      transform: scaleX(0);
+      transition: transform .2s ease-out;
+    }
+    .navbar-links > li:first-child > a {
+      padding-left: 0;
     }
     .navbar-links > li:last-child > a {
       padding-right: 0;
@@ -140,6 +162,9 @@
       .navbar-links {
         display: flex;
       }
+      .navbar-links > li > a:hover::after {
+        transform: scaleX(1);
+      }
       h2 {
         font-size: 32px;
       }
@@ -150,7 +175,13 @@
         background-color: #17a9fd;
       }
       .instagram-link:hover {
-        background-color: #fcaf45;
+        background: radial-gradient(
+          circle farthest-corner at 5% 100%,
+          var(--yellow) 0%,
+          var(--orange) 10%,
+          var(--red) 22%,
+          transparent 65%
+        ) ,linear-gradient(145deg, var(--blue) 10%, var(--violet) 40%, var(--violet) 70%);
       }
       .linkedin-link:hover {
         background-color: #0a66c2;
