@@ -94,8 +94,7 @@
       font-size: 46px;
       color: var(--white);
     }
-    h2 {
-      font-size: 16px;
+    h3, select#from-currency, div#target-currency {
       text-align: center;
       color: var(--white);
     }
@@ -122,14 +121,58 @@
       font-size: 14px;
     }
     .converter-wrapper {
-      width: 400px;
+      width: 90%;
+      margin: 0 auto;
       background-color: var(--white);
       border: 2px solid var(--violet);
       border-radius: 10px;
       padding: 20px;
     }
-    .row {
+    .converter-header > header {
+      padding-top: 20px;
       text-align: center;
+    }
+    .currency-selection {
+      padding-top: 20px;
+      justify-content: space-between;
+    }
+    .currency-selection > * {
+      width: 48%;
+    }
+    /* label[for="amount"] {
+      font-weight: bold;
+    } */
+    input#amount {
+      width: 100%;
+      padding: 6px;
+      outline: none;
+      /* border: none;
+      border-bottom: 2px solid var(--dark); */
+      border-bottom: 2px solid var(--dark);
+    }
+    select#from-currency, div#target-currency {
+      padding: 6px;
+      background-color: var(--violet);
+      border: none;
+      outline: none;
+      border-radius: 4px;
+    }
+    .select-container {
+      position: relative;
+    }
+    .select-container > select {
+      width: 100%;
+      height: 100%;
+      appearance: none;
+      cursor: pointer;
+    }
+    .select-icon {
+      height: 30px;
+      position: absolute;
+      top: 3px;
+      right: 4px;
+      background-color: #5d45a0;
+      border-radius: 4px;
     }
     /** MEDIA QUERIES **/
     @media screen and (min-width: 600px) {
@@ -143,8 +186,11 @@
         margin: 60px 0;
         font-size: 64px;
       }
-      h2 {
+      h3 {
         font-size: 24px;
+      }
+      .converter-wrapper {
+        width: 500px;
       }
     }
     @media screen and (min-width: 992px) {
@@ -166,7 +212,7 @@
       .navbar-links > li > a:hover::after {
         transform: scaleX(1);
       }
-      h2 {
+      h3 {
         font-size: 32px;
       }
       .navbar-links > li > a:hover {
@@ -189,6 +235,9 @@
       }
       .github-link:hover {
         background-color: #000;
+      }
+      input#amount:focus {
+        border-bottom: 2px solid var(--violet);
       }
     }
   </style>
@@ -216,24 +265,43 @@
     <h1>Quickly <span class="exchange">exchange</span> your money here:</h1>
     <section>
       <div class="converter-wrapper">
-        <div class="row">
-          <img src="./assets/images/cash-coin.svg" alt="cash and coin">
-          <h2 style="color: var(--dark)">Currency Converter</h2>
+        <div class="converter-header">
+          <header>
+            <img src="./assets/images/cash-coin.svg" alt="cash and coin">
+            <h3 style="color: var(--dark)">Currency Converter</h3>
+          </header>
         </div>
-        <label for="amount">Amount:</label><br>
-        <input type="number" id="amount" value="100">
-        <div class="row">
-          <select id="from-currency"></select>
-          <select id="target-currency"></select>
-        </div>
-        <div class="row">
-          <button id="convert-btn">Convert</button>
-          <p id="result">result:</p>
-        </div>
+          <main>
+            <label for="amount">Amount:</label><br>
+            <input type="number" id="amount" value="100">
+            <div class="currency-selection flex">
+
+              <div class="select-container">
+
+                <select id="from-currency" required>
+                  <option value="eur">EUR</option>
+                  <option value="usd">USD</option>
+                  <option value="chf">CHF</option>
+                </select>
+                
+                <div class="select-icon">
+                  <img src="./assets/images/arrow-down-short.svg" alt="currency select icon">
+                </div>
+
+              </div>
+              <!-- <select id="target-currency"></select> -->
+              <div id="target-currency">PLN</div>
+            </div>
+
+            <div class="row">
+              <button id="convert-btn">Convert</button>
+              <p id="result">result:</p>
+            </div>
+          </main>
       </div>
     </section>
     <section>
-      <h2>You can find the developer at:</h2>
+      <h3>You can find the developer at:</h3>
       <div class="social-media">
         <a href="#" target="_blank" draggable="true" class="facebook-link">
           <img src="./assets/images/facebook.svg" alt="facebook">
