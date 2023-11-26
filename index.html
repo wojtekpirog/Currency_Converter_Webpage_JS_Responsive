@@ -94,7 +94,10 @@
       font-size: 46px;
       color: var(--white);
     }
-    h3, select#from-currency, div#target-currency {
+    h3 {
+      margin: 20px 0;
+    }
+    h3, select#from-currency, div#target-currency, button#convert-btn {
       text-align: center;
       color: var(--white);
     }
@@ -133,24 +136,21 @@
       text-align: center;
     }
     .currency-selection {
-      padding-top: 20px;
+      margin-top: 20px;
       justify-content: space-between;
     }
     .currency-selection > * {
       width: 48%;
     }
-    /* label[for="amount"] {
-      font-weight: bold;
-    } */
     input#amount {
       width: 100%;
       padding: 6px;
       outline: none;
-      /* border: none;
-      border-bottom: 2px solid var(--dark); */
+      border: none;
       border-bottom: 2px solid var(--dark);
+      transition: border-color .5s ease-in-out;
     }
-    select#from-currency, div#target-currency {
+    select#from-currency, div#target-currency, button#convert-btn {
       padding: 6px;
       background-color: var(--violet);
       border: none;
@@ -164,7 +164,6 @@
       width: 100%;
       height: 100%;
       appearance: none;
-      cursor: pointer;
     }
     .select-icon {
       width: 36px;
@@ -174,6 +173,27 @@
       right: 0;
       background-color: #5d45a0;
       border-radius: 4px;
+    }
+    button#convert-btn {
+      width: 100%;
+      margin-top: 20px;
+      font-size: 20px; 
+    }
+    button#convert-btn > span {
+      position: relative;
+      transition: padding-right .5s ease-in-out;
+    }
+    button#convert-btn > span > img {
+      position: absolute;
+      bottom: -5px;
+      opacity: 0;
+      transition: opacity .5s ease-in-out;
+    }
+    p#result {
+      margin: 20px 0 0;
+    }
+    span.resultValue {
+      color: var(--violet);
     }
     /** MEDIA QUERIES **/
     @media screen and (min-width: 600px) {
@@ -218,6 +238,18 @@
       }
       .navbar-links > li > a:hover {
         color: var(--violet);
+      }
+      .select-container > select {
+        cursor: pointer;
+      }
+      button#convert-btn:hover > span {
+        padding-right: 20px;
+      }
+      button#convert-btn:hover > span > img {
+        opacity: 1;
+      }
+      button#convert-btn {
+        cursor: pointer;
       }
       .facebook-link:hover {
         background-color: #17a9fd;
@@ -280,9 +312,9 @@
               <div class="select-container">
 
                 <select id="from-currency" required>
-                  <option value="eur">EUR</option>
-                  <option value="usd">USD</option>
-                  <option value="chf">CHF</option>
+                  <option value="EUR">EUR</option>
+                  <option value="USD">USD</option>
+                  <option value="CHF">CHF</option>
                 </select>
                 
                 <div class="select-icon flex">
@@ -293,11 +325,8 @@
               <!-- <select id="target-currency"></select> -->
               <div id="target-currency">PLN</div>
             </div>
-
-            <div class="row">
-              <button id="convert-btn" ondblclick="defineSelect()">Convert</button>
-              <p id="result">result:</p>
-            </div>
+            <button type="button" id="convert-btn" onclick="defineSelect()"><span>Convert<img src="./assets/images/arrow-right-short.svg" alt="arrow right short"></span></button>
+            <p id="result">Value in PLN:</p>              
           </main>
       </div>
     </section>
