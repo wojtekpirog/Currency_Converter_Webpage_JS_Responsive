@@ -49,17 +49,23 @@
 
                 <select id="from-currency" required>
                   <option value="EUR">EUR</option>
-                  <option value="USD">USD</option>
-                  <option value="CHF">CHF</option>
                 </select>
+                  <!-- <option value="EUR">EUR</option>
+                  <option value="USD">USD</option>
+                  <option value="CHF">CHF</option> -->            
                 
                 <div class="select-icon flex">
                   <img src="./assets/images/arrow-down-short.svg" alt="currency select icon">
                 </div>
-
               </div>
               <!-- <select id="target-currency"></select> -->
-              <div id="target-currency">PLN</div>
+              <!-- <div id="target-currency">PLN</div> -->
+              <div class="select-container">
+                <select id="to-currency" required></select>
+                <div class="select-icon flex">
+                  <img src="./assets/images/arrow-down-short.svg" alt="currency select icon">
+                </div>
+              </div>
             </div>
             <button type="button" id="convert-btn" onclick="defineSelect()"><span>Convert<img src="./assets/images/arrow-right-short.svg" alt="arrow right short"></span></button>
             <p id="result">Value in PLN:</p>              

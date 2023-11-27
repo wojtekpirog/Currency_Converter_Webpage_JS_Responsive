@@ -168,7 +168,7 @@ input#amount {
 }
 
 select#from-currency,
-div#target-currency,
+select#to-currency,
 button#convert-btn {
   padding: 6px;
   background-color: var(--violet);
@@ -181,14 +181,14 @@ button#convert-btn {
   position: relative;
 }
 
-.select-container>select {
+.select-container > select {
   width: 100%;
   height: 100%;
   appearance: none;
 }
 
 .select-icon {
-  width: 36px;
+  width: 27px;
   height: 100%;
   position: absolute;
   top: 0;
