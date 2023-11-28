@@ -1,8 +1,14 @@
+const navbarToggler = document.querySelector(".navbar-toggler");
+const navbarLinks = document.querySelector(".navbar-links");
 const leftSelect = document.querySelector("#from-currency");
 const rightSelect = document.querySelector("#to-currency");
 const convertBtn = document.querySelector("#convert-btn");
 const input = document.querySelector("#amount");
 const result = document.querySelector("#result");
+
+navbarToggler.addEventListener('click', () => {
+  navbarLinks.classList.toggle('active');
+});
 
 fetch("https://api.frankfurter.app/currencies")
   .then(response => response.json())
@@ -35,17 +41,16 @@ convertBtn.addEventListener('click', () => {
 })
 
 const convert = (fromCurrency, toCurrency, amount) => {
-  fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=${fromCurrency}&to=${toCurrency}`)
+  fetch(`https://api.frankfurter.app/latest?amount=${Number(amount)}&from=${fromCurrency}&to=${toCurrency}`)
     .then(response => response.json())
     .then(dataReady => {
-      console.log(dataReady);
       let rates = Object.entries(dataReady.rates);
-      if (amount.value <= 0) {
+      if (amount <= 0 || isNaN(amount)) {
         result.innerText = "The value specified should be a number greater than zero.";
         result.setAttribute('style', 'color: red');
       } else {
-        result.innerHTML = `Value in ${rates[0][0]}: ${rates[0][1].toFixed(2)}`;
+        result.innerHTML = `Value in ${rates[0][0]}: <span style="color: var(--violet)">${rates[0][1].toFixed(2)}</span>`;
       }
     })
-    .catch(error => alert("An error occured while fetching data from server."))
+    .catch(error => alert("An error occured while fetching or processing data."))
 }

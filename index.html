@@ -14,20 +14,25 @@
 <body>
   <header>
     <div class="page-header flex">
-      <div class="page-logo flex">
-        <img src="./assets/images/coin.svg" alt="page logo icon">
-        <span>exchange.me</span>
+
+      <div class="navbar flex">
+        <div class="page-logo flex">
+          <img src="./assets/images/coin.svg" alt="page logo icon">
+          <span>exchange.me</span>
+        </div>
+        <button class="navbar-toggler">
+          <div></div>
+          <div></div>
+          <div></div>
+        </button>
       </div>
-      <button class="navbar-toggler">
-        <div></div>
-        <div></div>
-        <div></div>
-      </button>
-      <ul class="navbar-links flex">
+
+      <ul class="navbar-links">
         <li><a href="#" draggable="true">About Me</a></li>
         <li><a href="#" draggable="true">Features</a></li>
         <li><a href="#" draggable="true">Contact</a></li>
       </ul>
+
     </div>
   </header>
   <main>
@@ -57,8 +62,8 @@
                 </div>
               </div>
             </div>
-            <button type="button" id="convert-btn"><span>Convert<img src="./assets/images/arrow-right-short.svg" alt="arrow right short"></span></button>
-            <p id="result">Value in PLN:</p>              
+            <button type="button" id="convert-btn" onclick="convert()"><span>Convert<img src="./assets/images/arrow-right-short.svg" alt="arrow right short"></span></button>
+            <p id="result"></p>              
           </main>
       </div>
     </section>
