@@ -44,22 +44,12 @@
             <label for="amount">Amount:</label><br>
             <input type="number" id="amount" value="100">
             <div class="currency-selection flex">
-
               <div class="select-container">
-
-                <select id="from-currency" required>
-                  <option value="EUR">EUR</option>
-                </select>
-                  <!-- <option value="EUR">EUR</option>
-                  <option value="USD">USD</option>
-                  <option value="CHF">CHF</option> -->            
-                
+                <select id="from-currency" required></select>          
                 <div class="select-icon flex">
                   <img src="./assets/images/arrow-down-short.svg" alt="currency select icon">
                 </div>
               </div>
-              <!-- <select id="target-currency"></select> -->
-              <!-- <div id="target-currency">PLN</div> -->
               <div class="select-container">
                 <select id="to-currency" required></select>
                 <div class="select-icon flex">
@@ -67,7 +57,7 @@
                 </div>
               </div>
             </div>
-            <button type="button" id="convert-btn" onclick="defineSelect()"><span>Convert<img src="./assets/images/arrow-right-short.svg" alt="arrow right short"></span></button>
+            <button type="button" id="convert-btn"><span>Convert<img src="./assets/images/arrow-right-short.svg" alt="arrow right short"></span></button>
             <p id="result">Value in PLN:</p>              
           </main>
       </div>

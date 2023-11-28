@@ -1,39 +1,51 @@
-// id inputa: amount
-// id resulta: result
-// id selecta: from-currency
-const defineSelect = () => {
-  fetch('https://api.nbp.pl/api/exchangerates/tables/c/')
-    .then(response => response.json())
-    .then(dataReady => convertToPLN(dataReady)) 
-    .catch(error => {
-      console.log(`An error occured while fetching data. More information: ${error.message}`);
-      alert("An error occured while fetching data from the server.");
-    })
+const leftSelect = document.querySelector("#from-currency");
+const rightSelect = document.querySelector("#to-currency");
+const convertBtn = document.querySelector("#convert-btn");
+const input = document.querySelector("#amount");
+const result = document.querySelector("#result");
 
-  const convertToPLN = dataReady => {
-    const amount = document.querySelector("#amount");
-    const result = document.querySelector("#result");
-    const fromCurrency = document.querySelector("#from-currency");
-    const selectedOption = fromCurrency.options[fromCurrency.selectedIndex].value;
-    const exchangeRates = [];
+fetch("https://api.frankfurter.app/currencies")
+  .then(response => response.json())
+  .then(dataReady => render(dataReady))
+  .catch(error => {
+    console.error(`❌An error occured while fetching data: ${error.message}❌`);
+    alert("❌An error occured while fetching data.❌");
+  })
 
-    for (currency of dataReady[0].rates) {
-      if (currency.code === selectedOption) {
-        exchangeRates.push(currency.ask);
-      }
-    }
-
-    if (amount.value.length) {
-      if (amount.value >= 0) {
-        result.innerHTML = `Value in PLN: <span class="resultValue">${(amount.value * exchangeRates[0]).toFixed(2)}</span>`;
-      } else {
-        result.innerText = "The value specified should be a number greater than zero.";
-        console.error("The value specified should be greater than zero.");
-      }
-    } else {
-      result.innerText = "The value specified should be greater than zero.";
-      console.error("The value specified should be greater than zero.");
-    }
-  }    
+const render = dataReady => {
+  const currencies = Object.entries(dataReady);
+  for (let i = 0; i < currencies.length; i++) {
+    leftSelect.innerHTML += `<option value="${currencies[i][0]}">${currencies[i][1]}</option>`;
+    rightSelect.innerHTML += `<option value="${currencies[i][0]}">${currencies[i][1]}</option>`;
+  }
 }
 
+convertBtn.addEventListener('click', () => {
+  let fromCurrency = leftSelect.value;
+  let toCurrency = rightSelect.value;
+  let amount = input.value;
+
+  if (fromCurrency === toCurrency) {
+    alert("Currencies are the same.");
+    result.innerHTML = "Currencies should be different.";
+    result.setAttribute('style', 'color: red');
+  } else {
+    convert(fromCurrency, toCurrency, amount);
+  }
+})
+
+const convert = (fromCurrency, toCurrency, amount) => {
+  fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=${fromCurrency}&to=${toCurrency}`)
+    .then(response => response.json())
+    .then(dataReady => {
+      console.log(dataReady);
+      let rates = Object.entries(dataReady.rates);
+      if (amount.value <= 0) {
+        result.innerText = "The value specified should be a number greater than zero.";
+        result.setAttribute('style', 'color: red');
+      } else {
+        result.innerHTML = `Value in ${rates[0][0]}: ${rates[0][1].toFixed(2)}`;
+      }
+    })
+    .catch(error => alert("An error occured while fetching data from server."))
+}

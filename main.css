@@ -103,6 +103,7 @@ h3 {
 
 h3,
 select#from-currency,
+select#to-currency,
 div#target-currency,
 button#convert-btn {
   text-align: center;
