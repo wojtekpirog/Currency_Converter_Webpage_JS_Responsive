@@ -35,7 +35,9 @@ body {
 
 .navbar {
   width: 100%;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 .page-logo>span {
@@ -161,11 +163,13 @@ footer {
 
 .currency-selection {
   margin-top: 20px;
+  flex-direction: column;
+  row-gap: 20px;
   justify-content: space-between;
 }
 
 .currency-selection>* {
-  width: 48%;
+  width: 100%;
 }
 
 input#amount {
@@ -227,6 +231,7 @@ button#convert-btn>span>img {
 
 p#result {
   margin: 20px 0 0;
+  text-align: center;
 }
 
 span.resultValue {
@@ -234,6 +239,19 @@ span.resultValue {
 }
 
 /** MEDIA QUERIES **/
+@media screen and (min-width: 360px) {
+  .navbar {
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .currency-selection {
+    flex-direction: row;
+    column-gap: 20px;
+  }
+}
+
 @media screen and (min-width: 600px) {
   .page-logo>img {
     width: 40px;
