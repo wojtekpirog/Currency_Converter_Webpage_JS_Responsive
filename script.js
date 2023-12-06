@@ -14,8 +14,7 @@ fetch("https://api.frankfurter.app/currencies")
   .then(response => response.json())
   .then(dataReady => render(dataReady))
   .catch(error => {
-    console.error(`❌An error occured while fetching data: ${error.message}❌`);
-    alert("❌An error occured while fetching data.❌");
+    alert(`❌An error occured while fetching data: ${error.message}❌`);
   })
 
 const render = dataReady => {
@@ -32,9 +31,8 @@ convertBtn.addEventListener('click', () => {
   let amount = input.value;
 
   if (fromCurrency === toCurrency) {
-    alert("Currencies are the same.");
     result.innerHTML = "Currencies should be different.";
-    result.setAttribute('style', 'color: red');
+    result.setAttribute("style", "color: red");
   } else {
     convert(fromCurrency, toCurrency, amount);
   }
@@ -47,10 +45,10 @@ const convert = (fromCurrency, toCurrency, amount) => {
       let rates = Object.entries(dataReady.rates);
       if (amount <= 0 || isNaN(amount)) {
         result.innerText = "The value specified should be a number greater than zero.";
-        result.setAttribute('style', 'color: red');
+        result.setAttribute("style", "color: red");
       } else {
         result.innerHTML = `Value in ${rates[0][0]}: <span style="color: var(--violet)">${rates[0][1].toFixed(2)}</span>`;
+        result.setAttribute("style", "color: black");
       }
     })
-    .catch(error => alert("An error occured while fetching or processing data."))
 }
