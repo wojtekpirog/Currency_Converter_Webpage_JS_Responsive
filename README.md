@@ -21,4 +21,6 @@ The technologies the application was built with is as follows:
 ## Use instructions
 1. Clone this repository to your local computer: `git clone https://github.com/wojtekpirog/Currency_Converter_Webpage_JS_Responsive.git`
 2. Run `index.html` in your web browser
-3. Quickly and effortlessly convert money between many currencies available at "[Frankfurter Exchange rates and currency data API](https://www.frankfurter.app/docs/)" 
+3. Quickly and effortlessly convert money between many currencies available at "[Frankfurter Exchange rates and currency data API](https://www.frankfurter.app/docs/)"
+
+You can view the webpage currently running at exchangeme-calculator.netlify.app
