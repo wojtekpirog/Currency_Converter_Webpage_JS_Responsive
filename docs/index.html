@@ -19,7 +19,7 @@
         <!-- App header -->
         <div class="app__header">
           <!-- Logo -->
-          <img class="app__header-logo" src="./assets/cash-coin.svg" alt="An icon of a bank note and a dollar symbol in a circle.">
+          <img class="app__header-logo" src="./assets/images/cash-coin.svg" alt="An icon of a bank note and a dollar symbol in a circle.">
           <h1 class="app__header-title">Currency Converter</h1>
           <!-- Logo -->
         </div> 
@@ -29,7 +29,7 @@
           <!-- Container -->
           <div class="app__body-container">
             <!-- Amount input -->
-            <label for="amount">Enter amount: </label> 
+            <label for="amount" class="app__body-label">Enter Amount: </label> 
             <input type="number" id="amount" class="app__body-input" min="0.01" step="0.01" required> 
             <!-- Amount input -->
           </div>
@@ -37,14 +37,21 @@
           <!-- Container -->
           <div class="app__body-container">
             <!-- Currency select -->
-            <label for="from-currency">From: </label>
+            <label for="from-currency" class="app__body-label">From: </label>
             <select name="from-currency" id="from-currency" class="app__body-select app__body-select--from" required></select>
             <!-- Currency select -->
             <!-- Swap button -->
-            <button type="button" class="app__body-swap-button">Swap</button> 
+            <button type="button" class="app__body-swap-button">
+              <!-- Switch icon -->
+              <picture>
+                <source type="image/svg+xml" srcset="./assets/images/switch-vertical.svg">
+                <img class="app__body-swap-button-icon" src="./assets/images/switch-vertical.png" alt="Click this button to swap currencies.">
+              </picture>
+              <!-- Switch icon -->
+            </button> 
             <!-- Swap button -->
             <!-- Currency select -->
-            <label for="to-currency">To: </label>
+            <label for="to-currency" class="app__body-label">To: </label>
             <select name="to-currency" id="to-currency" class="app__body-select app__body-select--to" required></select>
             <!-- Currency select -->
           </div> 
