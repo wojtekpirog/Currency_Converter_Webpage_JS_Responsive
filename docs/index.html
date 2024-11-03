@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Quick and effortless currency converter</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Wojciech Piróg">
-  <link rel="icon" type="image/x-icon" href="./assets/images/coin.svg">
+  <link rel="icon" type="image/svg+xml" href="./assets/images/cash-coin.svg"> <!-- SVG Favicon -->
+  <link rel="stylesheet" href="image/png" href="./assets/images/cash-coin.png"> <!-- Fallback PNG Favicon for older browsers that do not support SVG -->
   <link rel="stylesheet" type="text/css" href="./css/style.min.css">
-  <title>Exchange.me</title>
 </head>
 <body>
   <!-- App -->
@@ -19,7 +20,10 @@
         <!-- App header -->
         <div class="app__header">
           <!-- Logo -->
-          <img class="app__header-logo" src="./assets/images/cash-coin.svg" alt="An icon of a bank note and a dollar symbol in a circle.">
+          <picture>
+            <source type="image/svg+xml" srcset="./assets/images/cash-coin.svg">
+            <img class="app__header-logo" src="./assets/images/cash-coin.png" alt="An icon of a bank note and a dollar symbol in a circle.">
+          </picture> 
           <h1 class="app__header-title">Currency Converter</h1>
           <!-- Logo -->
         </div> 
@@ -30,7 +34,7 @@
           <div class="app__body-container">
             <!-- Amount input -->
             <label for="amount" class="app__body-label">Enter Amount: </label> 
-            <input type="number" id="amount" class="app__body-input" min="0.01" step="0.01" required> 
+            <input type="number" id="amount" class="app__body-input" min="0.01" step="0.01" value="1.00" required> 
             <!-- Amount input -->
           </div>
           <!-- Container -->
@@ -61,12 +65,15 @@
             <!-- Convert button -->
             <button type="button" class="app__body-convert-button">Get Exchange Rate</button> 
             <!-- Convert button -->
+            <!-- Error message -->
+            <p class="app__body-error" aria-hidden="true"></p>
+            <!-- Error message -->
           </div>
           <!-- Container -->
           <!-- Container -->
           <div class="app__body-container">
             <!-- Result -->
-            <p id="result" class="app__body-result">1 PLN = 1.00 PLN</p>
+            <p id="result" class="app__body-result" aria-hidden="true"></p>
             <!-- Result -->
           </div>
           <!-- Container -->
@@ -76,11 +83,6 @@
       <!-- App wrapper -->
     </main> 
     <!-- Main -->
-    <!-- Footer -->
-    <footer class="app__footer">
-      <p class="app__footer-text"><sup>&copy;</sup><span class="app__footer-text-year"></span> App created by <a href="https://github.com/wojtekpirog" class="app__footer-text-link" target="_blank" rel="noopener">wojtekpirog</a></p>
-    </footer> 
-    <!-- Footer -->
   </div>
   <!-- App -->
   <script src="./js/script.min.js" defer></script>

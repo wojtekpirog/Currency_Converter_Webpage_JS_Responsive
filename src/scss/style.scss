@@ -1,5 +1,6 @@
 @use "./colors.scss" as colors;
 @use "./mixins.scss" as mixins;
+@use "./fonts.scss" as fonts;
 
 *,
 *:before,
@@ -11,11 +12,15 @@
 
 :root {
   font-size: 62.5%;
+
+  --primary-regular: "Primary", sans-serif;
+  --primary-medium: "Primary_medium", sans-serif;
+  --primary-bold: "Primary_bold", sans-serif;
 }
 
 body {
   background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%); 
-  font-family: sans-serif;
+  font-family: var(--primary-regular);
   font-size: 1.6rem;
 }
 
@@ -24,12 +29,12 @@ body {
   position: relative;
 
   &__wrapper {
-    width: 96%;
+    width: 94%;
     max-width: 600px;
     position: absolute;
     top: 50%;
     left: 50%;
-    padding: 3em 2em;
+    padding: 1em;
     color: colors.$light;
     text-align: center;
     background: linear-gradient(135deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, 0));
@@ -43,16 +48,21 @@ body {
     margin-bottom: 2em;
 
     &-logo {
-      margin-bottom: 1.5em;
+      width: 100px;
+      margin-bottom: .5em;
+    }
+
+    &-title {
+      font-size: 2.4rem;
     }
   }
 
   &__body {
     &-container {
-      margin-bottom: 1.5em;
+      margin-bottom: 1em;
       display: flex;
-      align-items: flex-start;
       flex-direction: column;
+      align-items: flex-start;
 
       &:last-child {
         margin-bottom: 0;
@@ -60,7 +70,11 @@ body {
     }
 
     &-label, &-input, &-select {
-      font-size: 1.8rem;
+      font-size: 1.4rem;
+    }
+
+    &-input, &-select {
+      font-family: var(--primary-regular);
     }
 
     &-label {
@@ -74,26 +88,37 @@ body {
 
     &-input, &-select {
       @include mixins.buttonAndInputStyles(colors.$gradient, colors.$light);
-      border: 2px solid colors.$light;
+      border: 3px solid colors.$light;
+
+      &:focus {
+        outline: none;
+        border-color: colors.$dark;
+      }
     }
 
     &-swap-button {
       width: 60px;
       height: 60px;
-      margin: 3em auto 1em;
+      margin: 2em auto 0;
       padding-top: 1em;
       padding-bottom: .8em;
       background: colors.$gradient;
-      border: 2px solid colors.$light;
+      border: 3px solid colors.$light;
       border-radius: 50%;
 
       &-icon {
         width: 30px;
       }
+
+      &:focus {
+        outline: none;
+        border-color: colors.$dark;
+      }
     }
 
     &-convert-button, &-result {
       @include mixins.buttonAndInputStyles(colors.$light, colors.$dark);
+      font-family: var(--primary-medium);
       font-size: 2rem;
       line-height: 1;
     }
@@ -101,9 +126,15 @@ body {
     &-convert-button {
       cursor: pointer;
     }
+    
+    &-error {
+      margin-top: 1em;
+      color: colors.$red;
+      align-self: center;
+    }
 
     &-result {
-      padding: 1.5em;
+      padding: 1em;
       background: linear-gradient(135deg, rgba(255, 255, 255, .2), rgba(255, 255, 255, .1));
       color: colors.$light;
     }
@@ -116,5 +147,37 @@ body {
     right: 0;
     padding: 2em;
     text-align: center;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .app {
+    &__wrapper {
+      padding: 3em 2em;
+    }
+
+    &__header {
+      &-logo {
+        margin-bottom: 1.5em;
+      }
+
+      &-title {
+        font-size: 3.2rem;
+      }
+    }
+
+    &__body {
+      &-container {
+        margin-bottom: 1.5em;
+      }
+
+      &-label, &-input, &-select {
+        font-size: 1.6rem;
+      }
+
+      &-input, &-select {
+        padding: 1em;
+      }
+    }
   }
 }

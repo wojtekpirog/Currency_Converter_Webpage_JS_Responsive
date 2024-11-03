@@ -1,6 +1,6 @@
 @mixin buttonAndInputStyles($background, $textColor) {
   width: 100%;
-  padding: 1em;
+  padding: .75em;
   border-radius: 8px;
   background: $background;
   color: $textColor;
