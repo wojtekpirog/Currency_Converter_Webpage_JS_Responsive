@@ -44,13 +44,16 @@ function renderLists() {
 }
 
 const getCurrencies = () => {
-  let amount = amountInput.value;
-  let fromCurrency = leftSelect.value;
-  let toCurrency = rightSelect.value;
+  let amount = parseFloat(amountInput.value);
+  const fromCurrency = leftSelect.value;
+  const toCurrency = rightSelect.value;
 
   if (fromCurrency === toCurrency) {
     errorMessage.setAttribute("aria-hidden", "false");
     errorMessage.textContent = "Currencies should be different.";
+  } else if (amount <= 0) {
+    errorMessage.setAttribute("aria-hidden", "false");
+    errorMessage.textContent = "The value specified should be greater than zero.";
   } else {
     errorMessage.setAttribute("aria-hidden", "true");
     errorMessage.textContent = "";
@@ -59,23 +62,22 @@ const getCurrencies = () => {
 }
 
 const convert = (amount, fromCurrency, toCurrency) => {
-  amount = parseFloat(amount) * 100; // Get the amount in cents
-  amount = (Math.round(amount) / 100).toFixed(2);
+  amount = formatCurrency(amount); // Ensure that the amount is formatted correctly
 
-  fetch(`https://api.frankfurter.app/latest?amount=${Number(amount)}&from=${fromCurrency}&to=${toCurrency}`)
+  fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=${fromCurrency}&to=${toCurrency}`)
     .then((response) => response.json())
     .then((dataReady) => {
       const data = Object.entries(dataReady.rates)[0];
 
       result.setAttribute("aria-hidden", "false");
-      result.innerHTML = `${amount + " " + dataReady.base} = ${(Math.round(data[1] * 100) / 100).toFixed(2) + " " + data[0]}`;
+      result.innerHTML = `${amount + " " + dataReady.base} = ${formatCurrency(data[1]) + " " + data[0]}`;
     })
     .catch((error) => handleError(error));
 }
 
-// const formatCurrency = (amountCents) => {
-//   return (Math.round(amountCents) / 100).toFixed(2);
-// }
+const formatCurrency = (amount) => {
+  return (Math.round(amount * 100) / 100).toFixed(2);
+}
 
 const handleError = (error) => {
   errorMessage.setAttribute("aria-hidden", "false");
