@@ -36,8 +36,11 @@ function renderLists() {
         leftSelect.innerHTML += `<option value="${currency[0]}">${currency[1]} (${currency[0]})</option>`;
         rightSelect.innerHTML += `<option value="${currency[0]}">${currency[1]} (${currency[0]})</option>`;
       });
+
+      leftSelect.value = "USD";
+      rightSelect.value = "EUR";
     })
-    .catch((error) => console.error(error));
+    .catch((error) => handleError(error));
 }
 
 const getCurrencies = () => {
@@ -56,52 +59,28 @@ const getCurrencies = () => {
 }
 
 const convert = (amount, fromCurrency, toCurrency) => {
+  amount = parseFloat(amount) * 100; // Get the amount in cents
+  amount = (Math.round(amount) / 100).toFixed(2);
+
   fetch(`https://api.frankfurter.app/latest?amount=${Number(amount)}&from=${fromCurrency}&to=${toCurrency}`)
     .then((response) => response.json())
     .then((dataReady) => {
       const data = Object.entries(dataReady.rates)[0];
 
       result.setAttribute("aria-hidden", "false");
-      result.innerHTML = `${dataReady.amount + " " + dataReady.base} = ${data[1] + " " + data[0]}`;
+      result.innerHTML = `${amount + " " + dataReady.base} = ${(Math.round(data[1] * 100) / 100).toFixed(2) + " " + data[0]}`;
     })
-    .catch((error) => console.error(error));
+    .catch((error) => handleError(error));
+}
+
+// const formatCurrency = (amountCents) => {
+//   return (Math.round(amountCents) / 100).toFixed(2);
+// }
+
+const handleError = (error) => {
+  errorMessage.setAttribute("aria-hidden", "false");
+  errorMessage.textContent = "We're sorry, an error has occured while fetching the data. Please try again later.";
+  console.error(`An error has occured while fetching the data: ${error.message}.`);
 }
 
 document.addEventListener("DOMContentLoaded", main);
-
-// const navbarToggler = document.querySelector(".navbar-toggler");
-// const navbarLinks = document.querySelector(".navbar-links");
-// const leftSelect = document.querySelector("#from-currency");
-// const rightSelect = document.querySelector("#to-currency");
-// const convertBtn = document.querySelector("#convert-btn");
-// const input = document.querySelector("#amount");
-// const result = document.querySelector("#result");
-
-// convertBtn.addEventListener('click', () => {
-//   let fromCurrency = leftSelect.value;
-//   let toCurrency = rightSelect.value;
-//   let amount = input.value;
-
-//   if (fromCurrency === toCurrency) {
-//     result.innerHTML = "Currencies should be different.";
-//     result.setAttribute("style", "color: red");
-//   } else {
-//     convert(fromCurrency, toCurrency, amount);
-//   }
-// })
-
-// const convert = (fromCurrency, toCurrency, amount) => {
-//   fetch(`https://api.frankfurter.app/latest?amount=${Number(amount)}&from=${fromCurrency}&to=${toCurrency}`)
-//     .then(response => response.json())
-//     .then(dataReady => {
-//       console.log(dataReady);
-//       let rates = Object.entries(dataReady.rates);
-//       if (amount <= 0 || isNaN(amount)) {
-//         result.innerText = "The value specified should be a number greater than zero.";
-//         result.setAttribute("style", "color: red");
-//       } else {
-//         result.innerHTML = `${amount} ${dataReady.base} = <span style="color: var(--violet)">${rates[0][1].toFixed(2)}</span> ${rates[0][0]}`;
-//         result.setAttribute("style", "color: black");
-//       }
-//     })
-// }
