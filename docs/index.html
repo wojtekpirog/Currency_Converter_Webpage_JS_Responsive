@@ -42,7 +42,9 @@
           <div class="app__body-container">
             <!-- Currency select -->
             <label for="from-currency" class="app__body-label">From: </label>
-            <select name="from-currency" id="from-currency" class="app__body-select app__body-select--from" required></select>
+            <div class="app__body-select-container">
+              <select name="from-currency" id="from-currency" class="app__body-select app__body-select--from" required></select>
+            </div>
             <!-- Currency select -->
             <!-- Swap button -->
             <button type="button" class="app__body-swap-button">
@@ -56,14 +58,16 @@
             <!-- Swap button -->
             <!-- Currency select -->
             <label for="to-currency" class="app__body-label">To: </label>
-            <select name="to-currency" id="to-currency" class="app__body-select app__body-select--to" required></select>
+            <div class="app__body-select-container">
+              <select name="to-currency" id="to-currency" class="app__body-select app__body-select--to" required></select>
+            </div>
             <!-- Currency select -->
           </div> 
           <!-- Container -->
           <!-- Container -->
           <div class="app__body-container">
             <!-- Convert button -->
-            <button type="button" class="app__body-convert-button">Get Exchange Rate</button> 
+            <button type="button" class="app__body-convert-button">Get exchange rate</button> 
             <!-- Convert button -->
             <!-- Error message -->
             <p class="app__body-error" aria-hidden="true"></p>

@@ -1,6 +1,6 @@
+@use "./fonts.scss" as fonts;
 @use "./colors.scss" as colors;
 @use "./mixins.scss" as mixins;
-@use "./fonts.scss" as fonts;
 
 *,
 *:before,
@@ -62,7 +62,6 @@ body {
       margin-bottom: 1em;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
 
       &:last-child {
         margin-bottom: 0;
@@ -79,6 +78,7 @@ body {
 
     &-label {
       margin-bottom: .5em;
+      align-self: flex-start;
     }
 
     &-select,
@@ -94,6 +94,43 @@ body {
         outline: none;
         border-color: colors.$dark;
       }
+    }
+
+    &-select-option {
+      color: colors.$dark;
+    }
+
+    &-select-container {
+      position: relative;
+
+      &::before, &::after {
+        --size: 10px;
+
+        content: "";
+        position: absolute;
+        right: 20px;
+        width: 10px;
+        height: 10px;
+        pointer-events: none;
+      }
+
+      &::before {
+        top: 29%;
+        border-left: var(--size) solid transparent;
+        border-right: var(--size) solid transparent;
+        border-bottom: var(--size) solid colors.$light;
+      }
+
+      &::after {
+        top: 54%;
+        border-left: var(--size) solid transparent;
+        border-right: var(--size) solid transparent;
+        border-top: var(--size) solid colors.$light;
+      }
+    }
+
+    &-select {
+      appearance: none;
     }
 
     &-swap-button {
@@ -120,11 +157,16 @@ body {
       @include mixins.buttonAndInputStyles(colors.$light, colors.$dark);
       font-family: var(--primary-medium);
       font-size: 2rem;
-      line-height: 1;
     }
 
     &-convert-button {
+      border: 3px solid transparent;
       cursor: pointer;
+
+      &:focus {
+        outline: none;
+        border-color: colors.$dark;
+      }
     }
     
     &-error {

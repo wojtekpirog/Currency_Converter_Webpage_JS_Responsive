@@ -26,6 +26,7 @@ function getElements() {
 
 function addListeners() {
   convertButton.addEventListener("click", getCurrencies);
+  swapButton.addEventListener("click", swapCurrencies);
 };
 
 function renderLists() {
@@ -33,8 +34,8 @@ function renderLists() {
     .then((response) => response.json())
     .then((dataReady) => {
       Object.entries(dataReady).forEach((currency) => {
-        leftSelect.innerHTML += `<option value="${currency[0]}">${currency[1]} (${currency[0]})</option>`;
-        rightSelect.innerHTML += `<option value="${currency[0]}">${currency[1]} (${currency[0]})</option>`;
+        leftSelect.innerHTML += `<option class="app__body-select-option" value="${currency[0]}">${currency[1]} (${currency[0]})</option>`;
+        rightSelect.innerHTML += `<option class="app__body-select-option" value="${currency[0]}">${currency[1]} (${currency[0]})</option>`;
       });
 
       leftSelect.value = "USD";
@@ -43,7 +44,7 @@ function renderLists() {
     .catch((error) => handleError(error));
 }
 
-const getCurrencies = () => {
+const getCurrencies = (event) => {
   let amount = parseFloat(amountInput.value);
   const fromCurrency = leftSelect.value;
   const toCurrency = rightSelect.value;
@@ -59,6 +60,15 @@ const getCurrencies = () => {
     errorMessage.textContent = "";
     convert(amount, fromCurrency, toCurrency);
   }
+}
+
+const swapCurrencies = (event) => {
+  // Get the value of the currency selected in the left dropdown list:
+  const leftCurrency = leftSelect.value;
+  // Set the value of the currency selected in the left dropdown list to the right one:
+  leftSelect.value = rightSelect.value;
+  // Set the value of the currency selected in the right dropdown list to the left one:
+  rightSelect.value = leftCurrency;
 }
 
 const convert = (amount, fromCurrency, toCurrency) => {
