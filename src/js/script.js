@@ -6,6 +6,10 @@ let convertButton;
 let errorMessage;
 let result;
 
+let amount;
+let fromCurrency;
+let toCurrency;
+
 const API_URL = "https://api.frankfurter.app";
 
 function main() {
@@ -31,7 +35,6 @@ function addListeners() {
 
 const fetchData = async (url) => {
   const response = await fetch(url);
-  console.log(response);
   // If the response status is not 200, throw an error
   if (!response.ok) {
     throw new Error(`HTTP request failed. Status: ${response.status}`);
@@ -57,9 +60,9 @@ const renderLists = async () => {
 }
 
 const getCurrencies = () => {
-  let amount = parseFloat(amountInput.value);
-  const fromCurrency = leftSelect.value;
-  const toCurrency = rightSelect.value;
+  amount = parseFloat(amountInput.value);
+  fromCurrency = leftSelect.value;
+  toCurrency = rightSelect.value;
 
   if (fromCurrency === toCurrency) {
     errorMessage.setAttribute("aria-hidden", "false");
@@ -70,7 +73,8 @@ const getCurrencies = () => {
   } else {
     errorMessage.setAttribute("aria-hidden", "true");
     errorMessage.textContent = "";
-    convert(amount, fromCurrency, toCurrency);
+    // Convert between currencies
+    convert(amount);
   }
 }
 
@@ -81,9 +85,11 @@ const swapCurrencies = () => {
   leftSelect.value = rightSelect.value;
   // Set the value of the currency selected in the right dropdown list to the left one:
   rightSelect.value = leftCurrency;
+  // Convert between currencies
+  getCurrencies();
 }
 
-const convert = async (amount, fromCurrency, toCurrency) => {
+const convert = async (amount) => {
   amount = formatCurrency(amount); // Ensure that the amount is formatted correctly
 
   try {
