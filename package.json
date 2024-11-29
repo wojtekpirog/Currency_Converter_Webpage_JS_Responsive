@@ -3,13 +3,22 @@
   "version": "1.0.0",
   "description": "Quickly and effortlessly convert money between many currencies available at [Frankfurter Exchange rates and currency data API](https://www.frankfurter.app/docs/)",
   "main": "gulpfile.js",
-  "scripts": {},
-  "keywords": ["money", "currency", "exchange", "rates", "convert"],
+  "scripts": {
+    "deploy": "gh-pages -d docs"
+  },
+  "keywords": [
+    "money",
+    "currency",
+    "exchange",
+    "rates",
+    "convert"
+  ],
   "author": {
     "name": "wojtekpirog",
     "url": "https://github.com/wojtekpirog"
   },
   "license": "ISC",
+  "homepage": "https://wojtekpirog.github.io/Currency_Converter_Webpage_JS_Responsive",
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.3",
@@ -23,6 +32,9 @@
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-terser": "^2.1.0",
-    "sass": "^1.77.8"    
+    "sass": "^1.77.8"
+  },
+  "dependencies": {
+    "gh-pages": "^6.2.0"
   }
 }

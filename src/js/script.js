@@ -6,7 +6,7 @@ let convertButton;
 let errorMessage;
 let result;
 
-const URL = "https://api.frankfurter.app/currencies";
+const API_URL = "https://api.frankfurter.app";
 
 function main() {
   getElements();
@@ -29,22 +29,34 @@ function addListeners() {
   swapButton.addEventListener("click", swapCurrencies);
 };
 
-function renderLists() {
-  fetch(URL)
-    .then((response) => response.json())
-    .then((dataReady) => {
-      Object.entries(dataReady).forEach((currency) => {
-        leftSelect.innerHTML += `<option class="app__body-select-option" value="${currency[0]}">${currency[1]} (${currency[0]})</option>`;
-        rightSelect.innerHTML += `<option class="app__body-select-option" value="${currency[0]}">${currency[1]} (${currency[0]})</option>`;
-      });
-
-      leftSelect.value = "USD";
-      rightSelect.value = "EUR";
-    })
-    .catch((error) => handleError(error));
+const fetchData = async (url) => {
+  const response = await fetch(url);
+  console.log(response);
+  // If the response status is not 200, throw an error
+  if (!response.ok) {
+    throw new Error(`HTTP request failed. Status: ${response.status}`);
+  }
+  // Return parsed data
+  return await response.json();
 }
 
-const getCurrencies = (event) => {
+const renderLists = async () => {
+  try {
+    const dataReady = await fetchData(`${API_URL}/currencies`);
+    // Fill the left and right select lists
+    Object.entries(dataReady).forEach((currency) => {
+      leftSelect.innerHTML += `<option class="app__body-select-option" value="${currency[0]}">${currency[1]} (${currency[0]})</option>`;
+      rightSelect.innerHTML += `<option class="app__body-select-option" value="${currency[0]}">${currency[1]} (${currency[0]})</option>`;
+    });
+    // Set "USD" and "EUR" as the default currencies
+    leftSelect.value = "USD";
+    rightSelect.value = "EUR";
+  } catch (error) {
+    handleError(error);
+  }
+}
+
+const getCurrencies = () => {
   let amount = parseFloat(amountInput.value);
   const fromCurrency = leftSelect.value;
   const toCurrency = rightSelect.value;
@@ -62,7 +74,7 @@ const getCurrencies = (event) => {
   }
 }
 
-const swapCurrencies = (event) => {
+const swapCurrencies = () => {
   // Get the value of the currency selected in the left dropdown list:
   const leftCurrency = leftSelect.value;
   // Set the value of the currency selected in the left dropdown list to the right one:
@@ -71,18 +83,18 @@ const swapCurrencies = (event) => {
   rightSelect.value = leftCurrency;
 }
 
-const convert = (amount, fromCurrency, toCurrency) => {
+const convert = async (amount, fromCurrency, toCurrency) => {
   amount = formatCurrency(amount); // Ensure that the amount is formatted correctly
 
-  fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=${fromCurrency}&to=${toCurrency}`)
-    .then((response) => response.json())
-    .then((dataReady) => {
-      const data = Object.entries(dataReady.rates)[0];
+  try {
+    const dataReady = await fetchData(`${API_URL}/latest?amount=${amount}&from=${fromCurrency}&to=${toCurrency}`);
+    const data = Object.entries(dataReady.rates)[0];
 
-      result.setAttribute("aria-hidden", "false");
-      result.innerHTML = `${amount + " " + dataReady.base} = ${formatCurrency(data[1]) + " " + data[0]}`;
-    })
-    .catch((error) => handleError(error));
+    result.setAttribute("aria-hidden", "false");
+    result.innerHTML = `${amount} ${dataReady.base} = ${formatCurrency(data[1])} ${data[0]}`;
+  } catch (error) {
+    handleError(error);
+  }
 }
 
 const formatCurrency = (amount) => {
